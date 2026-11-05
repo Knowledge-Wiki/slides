@@ -16,7 +16,7 @@ name: Deploy Pages
 
 on:
   push:
-    branches: ["mobile-first", "main", "master"]
+    branches: [ "main", "master"]
   workflow_dispatch:
 
 permissions:
