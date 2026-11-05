@@ -179,3 +179,54 @@
 .reveal:has(.slides .present.kma-chapter)::after {
   filter: brightness(0) invert(1);
 }
+
+/* ── Mobile-first: Hochformat (kleine, hochformatige Bildschirme) ──
+   mobile-portrait.js stellt im Hochformat die Foliengröße per
+   Reveal.configure() auf das Fenster-Seitenverhältnis um und setzt dafür
+   die Klasse `kma-portrait` am <html>-Element. Dann stapeln sich die
+   Breit-Layouts, damit der Inhalt die verfügbare Höhe ausfüllt, statt in
+   einer schmalen 16:9-Spalte zusammengedrückt zu wirken.
+   Ohne JS (Klasse fehlt) bleibt das Layout unverändert; @media screen
+   schließt den PDF-Export (?print-pdf) aus. */
+@media screen {
+  html.kma-portrait .reveal .columns {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.6em;
+    padding: 0 0.4em;
+  }
+  html.kma-portrait .reveal .columns > div {
+    flex: none;
+    width: 100%;
+  }
+  html.kma-portrait .reveal .kma-grid {
+    grid-template-columns: 1fr;
+    gap: 0.6em;
+    padding: 0 0.4em;
+  }
+  html.kma-portrait .reveal .swatches {
+    flex-wrap: wrap;
+    gap: 0.6em;
+    padding: 0 0.4em;
+  }
+  html.kma-portrait .reveal .swatch {
+    flex: 1 1 40%;
+    min-height: 4em;
+  }
+  /* Auf der schmalen Hochformat-Folie liest sich Fließtext linksbündig
+     besser; Titel- und Kapitel-Folien bleiben zentriert. */
+  html.kma-portrait .reveal .slides section {
+    text-align: left;
+  }
+  html.kma-portrait .reveal .slides section.title-slide,
+  html.kma-portrait .reveal .slides section.kma-chapter {
+    text-align: center;
+  }
+  /* dezentes Footer-Logo auf kleinen Screens etwas kompakter */
+  html.kma-portrait .reveal::after {
+    width: 34px;
+    height: 34px;
+    left: 0.7em;
+    bottom: 0.6em;
+  }
+}

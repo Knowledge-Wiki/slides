@@ -98,6 +98,25 @@ pandoc -s -i \
 - Vollständiger KMA-Styleguide (Brand-Fakten von km-a.net, alle Komponenten,
   Do's & Don'ts): `../docs/kma-styleguide.md`
 
+## Mobile-first: Hochformat (Test)
+
+Auf hochformatigen kleinen Bildschirmen (Telefon) skaliert reveal.js die 16:9-Folie
+seitenverhältnistreu auf die Breite – die Folie wäre nur ein schmaler Streifen in
+der Mitte des Screens. Zwei Dateien im KMA-Template stellen das um:
+
+- `mobile-portrait.js` – im Hochformat (`vh > vw`) wird per `Reveal.configure()`
+  die Foliengröße auf das Fenster-Seitenverhältnis gesetzt (Breite 720, Höhe passend),
+  sodass die Folie den Screen ausfüllt und der Inhalt größer lesbar ist; im Querformat
+  wird die ursprüngliche Größe (1280×720 bzw. 1024×768) wiederhergestellt. Das Script
+  setzt außerdem die Klasse `kma-portrait` am `<html>`-Element. PDF-Export
+  (`?print-pdf`) wird nicht verändert.
+- `custom.css` (Abschnitt „Mobile-first: Hochformat“) – bei `html.kma-portrait`
+  stapeln sich `.columns` und `.kma-grid` einspaltig, `.swatches` bricht auf 2 Spalten
+  um, Fließtext wird linksbündig (Titel-/Kapitelfolien zentriert), Footer-Logo kleiner.
+
+Eingebunden via `header-includes` in `slides.md` (`<script defer …>`) und in den
+gebauten `index.html` / `index-4x3.html` vor `</body>`.
+
 ## Präsentieren
 
 `index.html` im Browser öffnen – komplett statisch und **voll offline**

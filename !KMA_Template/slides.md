@@ -7,6 +7,8 @@ institute: '<img src="img/kma_logo_400pxsquare.svg" height="140"/><br/><small>Be
 header-includes: |
   <!-- Open Sans lokal vendored (build/fonts/), kein Google-Fonts-Request – Deck laeuft voll offline -->
   <link rel="stylesheet" href="../build/fonts/fonts.css">
+  <!-- Mobile-first: Hochformat-Optimierung (defer -> laeuft nach Reveal.initialize) -->
+  <script defer src="mobile-portrait.js"></script>
 ---
 
 ## Agenda 
