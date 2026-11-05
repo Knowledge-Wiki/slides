@@ -1,7 +1,6 @@
 # KMA_RevealJS_Slides
 
-reveal.js-Präsentationen aus Markdown, gebaut mit pandoc (Vorbild:
-<https://github.com/zhbluzern/slides>).
+reveal.js-Präsentationen aus Markdown, gebaut mit pandoc.
 
 **Ja – hier liegt ein KM-A-spezifisches reveal.js-Design:** das Verzeichnis
 [`!KMA_Template/`](!KMA_Template/) ist die zentrale Vorlage für alle

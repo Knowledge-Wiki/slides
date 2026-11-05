@@ -53,7 +53,12 @@ jobs:
           if ! command -v pandoc >/dev/null; then
             sudo apt-get update && sudo apt-get install -y pandoc
           fi
-          pandoc README.md -f gfm -s --metadata title="KMA RevealJS Slides" -o index.html
+          pandoc README.md -f gfm -s \
+            --metadata lang=de \
+            --metadata title="KMA RevealJS Slides" \
+            --css=build/fonts/fonts.css \
+            --css=pages.css \
+            -o index.html
 
       - name: Upload Pages-Artefakt
         uses: actions/upload-pages-artifact@v3
