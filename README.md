@@ -24,7 +24,8 @@ KMA_RevealJS_Slides/
 │   └── README.md                    # Doku des KMA-Templates: Brand, Komponenten, genauer Build-Befehl
 ├── build/
 │   ├── reveal.js-6.0.2/             # vendortes reveal.js 6.0.2 (npm-Paket: dist/, LICENSE, package.json)
-│   └── revealjs-template-6.x.html   # pandoc-Template für 6.x (Plugin-Pfade dist/plugin/*.js)
+│   ├── revealjs-template-6.x.html   # pandoc-Template für 6.x (Plugin-Pfade dist/plugin/*.js)
+│   └── fonts/                       # Open Sans lokal vendored (fonts.css + WOFF2 + OFL.txt) – kein Google-Fonts-Request
 ├── docs/
 │   ├── kma-styleguide.md            # KMA-Corporate-Design für Slides (Brand-Fakten von km-a.net, alle Komponenten, Do's & Don'ts)
 │   ├── revealjs-markdown-vs-html.md # Markdown vs. reines HTML bei reveal.js
@@ -48,7 +49,7 @@ Details siehe [`docs/kma-styleguide.md`](docs/kma-styleguide.md) und
 | KM-A Rot | `#c00000` – Überschriften, Akzente, Logo, Kapitel-Folien |
 | KM-A Blau | `#0070c0` – Links, AAA-Marken (Academy / Associates / Austria) |
 | Grundfläche | `#ffffff`, Text `#444444` / `#666666` |
-| Schrift | Open Sans (Google Fonts, Fallback Arial) |
+| Schrift | Open Sans – lokal vendored in `build/fonts/` (WOFF2, Fallback Arial) |
 | Logo | `img/kma_logo_400pxsquare.svg` – Titelfolie via YAML-`institute`, auf jeder Folie dezentes Footer-Logo via CSS |
 
 Fertige Komponenten (semantische Klassen in `custom.css`, im Markdown per
@@ -102,8 +103,9 @@ Div-Attributen/Fenced Divs nutzbar): `.columns` (Zweispalter),
      Screens Seitenbalken). Details: `!KMA_Template/README.md`.
    - pandoc **3.1.3** (im Template-README dokumentiert).
 
-4. `index.html` im Browser öffnen – komplett statisch und offline lauffähig
-   (reveal.js liegt lokal; Open Sans lädt nur online, sonst Fallback Arial).
+4. `index.html` im Browser öffnen – komplett statisch und **voll offline**
+   (reveal.js **und** Open Sans liegen lokal in `build/`; ohne `fonts.css`
+   fällt die Schrift auf Arial zurück).
    Tasten: `Esc` Übersicht, `s` Speaker-Ansicht (Notizen), `f` Vollbild,
    `?` Hilfe, `index.html?print-pdf` → PDF-Export.
 
@@ -113,7 +115,8 @@ Div-Attributen/Fenced Divs nutzbar): `.columns` (Zweispalter),
   jedes Deck läuft offline und ist auch in Jahren per `git clone` exakt
   reproduzierbar. Aktuell vorhanden: **reveal.js 6.0.2**
   (`build/reveal.js-6.0.2/`, UMD-Build `dist/reveal.js` funktioniert auch via
-  `file://`).
+  `file://`) und **Open Sans** (`build/fonts/`, WOFF2 + `fonts.css` + OFL-Lizenz,
+  geladen via `header-includes` als `<link rel="stylesheet" href="../build/fonts/fonts.css">`).
 - Pro Major-Version **ein eigenes Verzeichnis**: `build/reveal.js-6.0.2/`,
   bei Bedarf `build/reveal.js-7.x.y/`, … Bestehende Verzeichnisse **nie
   überschreiben** – alte Decks referenzieren sie per relativem Pfad.

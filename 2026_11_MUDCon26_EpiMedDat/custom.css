@@ -1,0 +1,217 @@
+/* KMA-Design für reveal.js – abgeleitet von https://km-a.net/
+   Rot #c00000 (Divi accent_color, Headings, Logo), Blau #0070c0 (AAA-Marken),
+   Grundfläche weiß, Text #444444, Schrift Open Sans. */
+
+:root {
+  --kma-red: #c00000;
+  --kma-blue: #0070c0;
+  --kma-bg: #ffffff;
+  --kma-text: #444444;
+  --kma-muted: #666666;
+  --kma-border: #e8e8e8;
+}
+
+/* ── Theme-Tokens (überschreiben das gewählte reveal.js-Theme "white") ── */
+.reveal {
+  --r-background-color: var(--kma-bg);
+  --r-main-color: var(--kma-text);
+  --r-heading-color: var(--kma-red);
+  --r-link-color: var(--kma-blue);
+  --r-selection-background-color: var(--kma-red);
+  font-family: "Open Sans", Arial, sans-serif;
+  background: var(--kma-bg);
+  color: var(--kma-text);
+}
+
+/* ── Typo: Open Sans, Überschriften rot, ohne Versalien ── */
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+  font-family: "Open Sans", Arial, sans-serif;
+  text-transform: none;
+  letter-spacing: normal;
+  color: var(--kma-red);
+}
+
+.reveal h2 {
+  display: inline-block;
+  padding-bottom: 0.12em;
+  border-bottom: 3px solid var(--kma-red);
+}
+
+.reveal a { color: var(--kma-blue); }
+.reveal a:hover { color: var(--kma-red); }
+.reveal strong { color: var(--kma-red); }
+.reveal small { color: var(--kma-muted); }
+
+/* ── Listen mit rotem ▸ ── */
+/* WICHTIG: Das 6.x-Theme setzt ul/ol/dl auf display:inline-block – dann rutscht
+   die Liste neben die h2 (ebenfalls inline-block wegen der Unterlinie).
+   Hier wieder auf block stellen. */
+.reveal ul, .reveal ol, .reveal dl {
+  display: block;
+  list-style: none;
+  padding-left: 0;
+}
+.reveal ul li {
+  position: relative;
+  padding-left: 1.2em;
+  margin-bottom: 0.45em;
+}
+.reveal ul li::before {
+  content: "\25B8";
+  color: var(--kma-red);
+  position: absolute;
+  left: 0;
+}
+
+/* ── Bilder ohne Rahmen/Schatten ── */
+.reveal .slides section img {
+  border: none;
+  box-shadow: none;
+  background: none;
+}
+
+/* ── Titelfolie: Logo-Zeile im YAML-Feld `institute` ── */
+/* pandoc packt `institute` in ein <p class="institute"> – deshalb im Markdown
+   ein <span class="logo-row"> (kein <div>: der Browser-Parser würde das <p>
+   vorzeitig schließen). Flex-Zeile mit space-evenly: die Logos stehen
+   gleichmäßig auf der horizontalen Achse verteilt in einer zentrierten Zeile;
+   align-items zentriert sie vertikal. Breite/Gap hier justieren. */
+.reveal p.institute .logo-row {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 80%;
+  margin: 0.4em auto 0;
+}
+
+/* ── Titelfolie: Reihenfolge title → subtitle → institute → author → date ── */
+/* Das pandoc-Template rendert author VOR institute; gewünscht ist der Autor als
+   vorletzte Zeile (direkt vor date). Per flex + order getauscht.
+   - !important nötig: reveal.js setzt display inline (config display:'block').
+   - Die ID-Spezifität schlägt außerdem das print-CSS (display:block!important),
+     damit die Reihenfolge auch im PDF-Export (?print-pdf) stimmt.
+   - Zentrierung bleibt erhalten: reveal.js zentriert die section über
+     slide.style.top anhand scrollHeight, nicht über ihr internes Layout.
+   - gap + margin-Reset: in flex kollabieren die p-Margins nicht mehr, deshalb
+     Abstand explizit auf var(--r-block-margin) (= 20px wie bisher) setzen. */
+.reveal #title-slide {
+  display: flex !important;
+  flex-direction: column;
+  gap: var(--r-block-margin);
+}
+.reveal #title-slide > * { margin-top: 0; margin-bottom: 0; }
+.reveal #title-slide > .title     { order: 1; }
+.reveal #title-slide > .subtitle  { order: 2; }
+.reveal #title-slide > .institute { order: 3; }
+.reveal #title-slide > .author    { order: 4; }
+.reveal #title-slide > .date      { order: 5; }
+
+/* ── Kompakte Folien: kleinere Grundschrift, skaliert alles in em ── */
+.reveal section.slide-compact { font-size: 0.72em; }
+
+/* ── Zweispalten-Layout ── */
+/* Vollbreiten-Layouts bekommen eigenen Seitenabstand (padding), damit der Inhalt
+   nie am Folienrand klebt – unabhängig vom konfigurierten slide-margin und vom
+   Seitenverhältnis des Ausgabegeräts (16:9-Screen vs. 4:3-Beamer). */
+.reveal .columns {
+  display: flex;
+  gap: 2.5em;
+  align-items: center;
+  text-align: left;
+  padding: 0 0.8em;
+}
+.reveal .columns > div {
+  flex: 1 1 0;
+  min-width: 0; /* verhindert Überlauf langer Inhalte */
+}
+
+/* ── AAA-Karten (drei Spalten) ── */
+.reveal .kma-grid {
+  display: grid;
+  /* minmax(0,1fr): Tracks dürfen nicht durch min-content der Karten
+     breiter werden als die Folie (sonst läuft die 3. Spalte rechts raus) */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1em;
+  max-width: 100%;
+  padding: 0 0.8em;
+  text-align: left;
+}
+.reveal .kma-card {
+  background: #fff;
+  border: 1px solid var(--kma-border);
+  border-top: 4px solid var(--kma-red);
+  border-radius: 8px;
+  padding: 0.7em 0.9em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+/* Karten-Titel als fettgedruckter Absatz (kein ### – sonst macht pandoc
+   daraus eine eigene Slide/section) */
+.reveal .kma-card > p:first-child strong {
+  color: var(--kma-blue);
+  font-size: 1.15em;
+}
+.reveal .kma-card p:last-child { margin-bottom: 0; }
+
+/* ── Farb-Fächer auf der Styleguide-Folie ── */
+.reveal .swatches {
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+  margin-top: 0.8em;
+  padding: 0 0.8em;
+}
+.reveal .swatch {
+  flex: 1 1 0;
+  border-radius: 10px;
+  padding: 0.9em 1em;
+  min-height: 5.5em;
+  border: 1px solid var(--kma-border);
+  text-align: left;
+  font-size: 0.8em;
+}
+.reveal .swatch strong { display: block; font-size: 1.25em; color: inherit; }
+.reveal .swatch span { opacity: 0.9; }
+.reveal .swatch-red  { background: var(--kma-red);  color: #fff; border-color: var(--kma-red); }
+.reveal .swatch-blue { background: var(--kma-blue); color: #fff; border-color: var(--kma-blue); }
+.reveal .swatch-white { background: #fff; color: var(--kma-text); }
+.reveal .swatch-text { background: var(--kma-text); color: #fff; border-color: var(--kma-text); }
+/* Listen innerhalb der Fächer: ▸ erbt die jeweilige Swatch-Textfarbe
+   (weiß auf den Vollton-Fächern, Textfarbe auf swatch-white)
+   statt des globalen KMA-Rot */
+.reveal .swatch ul li::before { color: inherit; }
+
+/* ── Kapitel-/Akzentfolien mit Vollton-Hintergrund (weißer Text) ── */
+.reveal section.kma-chapter,
+.reveal .kma-chapter h1, .reveal .kma-chapter h2 { color: #fff; }
+.reveal section.kma-chapter h1,
+.reveal section.kma-chapter h2 { border-bottom-color: #fff; }
+
+/* ── Navigatorpfeile (Controls) halb so groß ── */
+/* reveal.js 6.x: .reveal .controls { font-size: clamp(10px, 2.5vmin, 40px) },
+   die Pfeile sind em-basiert (3.6em × 3.6em) → halbes font-size = halbe Pfeile */
+.reveal .controls {
+  font-size: clamp(5px, 1.25vmin, 20px);
+}
+
+/* ── dezentes Logo unten links auf jeder Folie ── */
+.reveal::after {
+  content: "";
+  position: fixed;
+  left: 1.2em;
+  bottom: 1.1em;
+  width: 52px;
+  height: 52px;
+  background: url("img/kma_logo_400pxsquare.svg") center / contain no-repeat;
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 40;
+}
+
+/* Auf Vollton-Folien (kma-chapter) Logo weiß einfärben – rot auf rot/blau
+   wäre unsichtbar. :has() braucht Chrome 105+ / Firefox 121+ / Safari 15.4+;
+   ohne Support bleibt das Logo einfach rot (auf hellen Folien korrekt). */
+.reveal:has(.slides .present.kma-chapter)::after {
+  filter: brightness(0) invert(1);
+}

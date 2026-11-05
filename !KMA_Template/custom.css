@@ -141,6 +141,10 @@
 .reveal .swatch-blue { background: var(--kma-blue); color: #fff; border-color: var(--kma-blue); }
 .reveal .swatch-white { background: #fff; color: var(--kma-text); }
 .reveal .swatch-text { background: var(--kma-text); color: #fff; border-color: var(--kma-text); }
+/* Listen innerhalb der Fächer: ▸ erbt die jeweilige Swatch-Textfarbe
+   (weiß auf den Vollton-Fächern, Textfarbe auf swatch-white)
+   statt des globalen KMA-Rot */
+.reveal .swatch ul li::before { color: inherit; }
 
 /* ── Kapitel-/Akzentfolien mit Vollton-Hintergrund (weißer Text) ── */
 .reveal section.kma-chapter,

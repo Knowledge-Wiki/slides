@@ -1,7 +1,7 @@
 # KMA-Styleguide für reveal.js-Präsentationen
 
 Datum: 2026-11-05
-Praxisbeispiel: `2026_11_KMA/` (gebaut: `index.html`, Quelle: `slides.md` + `custom.css`)
+Praxisbeispiel: `!KMA_Template/` (gebaut: `index.html` + `index-4x3.html`, Quelle: `slides.md` + `custom.css`)
 Brand-Quelle: <https://km-a.net/> (HTML/CSS inspiziert am 2026-11-05)
 
 ---
@@ -54,9 +54,17 @@ Font-Größe (Standard 42px). Deshalb in `custom.css` konsequent **em** verwende
 
 ## 3. Typografie
 
-- **Open Sans** über `header-includes` im YAML-Header von `slides.md` laden
-  (Google Fonts). Offline fällt die Schrift sauber auf Arial/sans-serif zurück –
-  das Deck bleibt dank vendored reveal.js voll offline lauffähig.
+- **Open Sans** lokal vendored in `build/fonts/` (WOFF2, Gewichte
+  300/400/600/700/800, Subsets latin + latin-ext, Lizenz SIL OFL – `OFL.txt`
+  liegt daneben; Quelle: npm-Paket `@fontsource/open-sans` 5.3.0). Laden über
+  `header-includes` im YAML-Header von `slides.md` – **kein Google-Fonts-Request**:
+
+  ```html
+  <link rel="stylesheet" href="../build/fonts/fonts.css">
+  ```
+
+  Damit läuft das Deck vollständig offline (reveal.js + Schrift lokal).
+  Ohne `fonts.css` fällt die Schrift sauber auf Arial/sans-serif zurück.
 - Überschriften `h1–h4`: Open Sans, `text-transform: none`, **rot**;
   `h2` zusätzlich mit roter Unterlinie (`display: inline-block; border-bottom: 3px solid var(--kma-red)`).
 - Fließtext `#444444`, `strong` rot hervorgehoben, Links **blau** (`#0070c0`),
@@ -64,7 +72,7 @@ Font-Größe (Standard 42px). Deshalb in `custom.css` konsequent **em** verwende
 
 ## 4. Logo
 
-- Einzige Datei: `2026_11_KMA/img/kma_logo_400pxsquare.svg` (Seitenverhältnis 1:1,
+- Einzige Datei: `!KMA_Template/img/kma_logo_400pxsquare.svg` (Seitenverhältnis 1:1,
   nie verzerren).
 - **Titelfolie:** im YAML-Feld `institute` (`<img src="img/kma_logo_400pxsquare.svg" height="140"/>`).
 - **Inhaltsfolien:** normales Markdown-Bild `![KM-A Logo](img/kma_logo_400pxsquare.svg){height="110px"}`.
@@ -136,7 +144,7 @@ author: Dein Name
 date: 05. November 2026
 institute: '<img src="img/kma_logo_400pxsquare.svg" height="140"/><br/><small>…</small>'
 header-includes: |
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../build/fonts/fonts.css">
 ---
 ```
 
@@ -155,7 +163,7 @@ header-includes: |
 ## 7. Build (reveal.js 6.0.2, vendored)
 
 ```bash
-cd 2026_11_KMA
+cd '!KMA_Template'
 # 16:9 → index.html
 pandoc -s -i -f markdown+markdown_in_html_blocks -t revealjs \
   --template=../build/revealjs-template-6.x.html \
@@ -201,7 +209,8 @@ eine Folie.
 
 ## 9. Referenzen
 
-- Praxisbeispiel: `2026_11_KMA/` (`slides.md`, `custom.css`, `README.md`, `img/kma_logo_400pxsquare.svg`)
+- Praxisbeispiel: `!KMA_Template/` (`slides.md`, `custom.css`, `README.md`, `img/kma_logo_400pxsquare.svg`)
+- Lokal vendored Schrift: `build/fonts/` (`fonts.css`, 10 WOFF2-Dateien, `OFL.txt`)
 - Brand-Quelle: <https://km-a.net/> – Divi-Customizer `accent_color:#c00000`, AAA-Spans `#0070c0`, Open Sans, Kontaktdaten
 - Token-Muster: `docs/bento-box-design-custom-css.md`
 - Versionierung vendored reveal.js: `docs/revealjs-versionierung-vendored-vs-cdn.md`

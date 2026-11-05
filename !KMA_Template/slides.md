@@ -5,9 +5,8 @@ author: Dein Name
 date: 05. November 2026
 institute: '<img src="img/kma_logo_400pxsquare.svg" height="140"/><br/><small>Beispielpräsentation mit KMA-Styling (rot/blau auf weiß)</small>'
 header-includes: |
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap" rel="stylesheet">
+  <!-- Open Sans lokal vendored (build/fonts/), kein Google-Fonts-Request – Deck laeuft voll offline -->
+  <link rel="stylesheet" href="../build/fonts/fonts.css">
 ---
 
 ## Agenda 

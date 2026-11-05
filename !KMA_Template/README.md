@@ -12,7 +12,7 @@ Logo als SVG.
 | KM-A Blau | `#0070c0` | Links, AAA-Marken (KM Academy / Associates / Austria) |
 | Grundfläche | `#ffffff` | Folien-Hintergrund |
 | Text | `#444444` / `#666666` | Fließtext / Sekundär |
-| Schrift | Open Sans | wie auf km-a.net (Google Fonts, Fallback Arial) |
+| Schrift | Open Sans | wie auf km-a.net – lokal vendored in `../build/fonts/` (WOFF2 + `fonts.css`, OFL-Lizenz), Fallback Arial |
 
 Logo: `img/kma_logo_400pxsquare.svg` (400×400, rot `#c00000`).
 
@@ -66,6 +66,10 @@ pandoc -s -i \
   Template `revealjs-template-6.x.html` – Plugin-Pfade in 6.x liegen unter
   `dist/plugin/*.js` (in 4.x unter `plugin/<name>/<name>.js`).
 - pandoc **3.1.3**.
+- **Open Sans** liegt lokal in `../build/fonts/` (WOFF2, Gewichte 300/400/600/700/800,
+  Subsets latin + latin-ext, Lizenz `OFL.txt`), geladen per `header-includes` in
+  `slides.md` (`<link rel="stylesheet" href="../build/fonts/fonts.css">`) –
+  **kein externer Request**, das Deck läuft voll offline.
 - **Layout/Seitenverhältnis:** reveal.js skaliert die Folie immer
   *seitenverhältnistreu* ins Fenster; `margin` bezieht sich auf die Folie,
   nicht auf den Screen. Default beider reveal.js-Versionen ist 960×700 bei
@@ -81,7 +85,7 @@ pandoc -s -i \
 
 | Folie | Baustein |
 |---|---|
-| Titelfolie | YAML-Header mit `subtitle` + Logo im `institute`; Open Sans via `header-includes` |
+| Titelfolie | YAML-Header mit `subtitle` + Logo im `institute`; Open Sans lokal via `header-includes` (`../build/fonts/fonts.css`) |
 | Wer wir sind | Zweispalten-Layout (`div.columns`) mit Logo-Bild |
 | Die drei AAA | 3er-Grid `.kma-grid` mit Karten `.kma-card` (Titel als **fett**, nicht `###` – sonst macht pandoc daraus eine eigene Slide); Grid-Tracks `minmax(0,1fr)`, damit die 3. Spalte nicht rechts rausläuft |
 | Wer wir sind, Die drei AAA | Klasse `.slide-compact` am `##`-Header → kleinere Grundschrift (`font-size: 0.72em`, skaliert alles in em) für inhaltsreiche Folien |
@@ -96,7 +100,8 @@ pandoc -s -i \
 
 ## Präsentieren
 
-`index.html` im Browser öffnen – komplett statisch, läuft offline
-(reveal.js liegt lokal; Open Sans lädt nur online, sonst Fallback Arial).
+`index.html` im Browser öffnen – komplett statisch und **voll offline**
+(reveal.js und Open Sans liegen lokal in `../build/`; ohne `fonts.css` fällt
+die Schrift auf Arial/sans-serif zurück).
 Tasten: `Esc` Übersicht, `s` Speaker-Ansicht (Notizen), `f` Vollbild,
 `?` Hilfe, `index.html?print-pdf` → PDF-Export.
