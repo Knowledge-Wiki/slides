@@ -1,0 +1,54 @@
+# GitHub Pages via GitHub Actions (deploy-pages@v5)
+#
+# WICHTIG gegen den "Getting Pages deployment status..."-Dauerschleife:
+#  1. Pages-Quelle des Repos muss "GitHub Actions" sein
+#     (Settings → Pages → Build and deployment → Source), sonst wird das
+#     erstellte Deployment nie abgearbeitet und der Status bleibt leer.
+#     -> configure-pages mit enablement: true macht das automatisch
+#        (braucht pages: write).
+#  2. permissions pages:write + id-token:write (OIDC) müssen gesetzt sein.
+#  3. timeout-minutes begrenzt den Job, damit er nicht ewig pollt.
+#
+# Branch-Namen unter on.push anpassen (z. B. mobile-first, main, master).
+# upload path anpassen, falls nicht das ganze Repo deployed werden soll.
+
+name: Deploy Pages
+
+on:
+  push:
+    branches: ["mobile-first", "main", "master"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages (aktiviert Pages + Quelle "GitHub Actions")
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Upload Pages-Artefakt
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "."            # ggf. anpassen, z. B. path: "2026_11_KMA"
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
