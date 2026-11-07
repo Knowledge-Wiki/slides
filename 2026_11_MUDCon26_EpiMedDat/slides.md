@@ -1,11 +1,11 @@
 ---
 title: EpiMedDat
-subtitle: From Plain WikiText to Semantic MediaWiki and Wikibase
+subtitle: From Plain Wikitext to Semantic MediaWiki and Wikibase
 author: '<small>Christian Erlinger (KMA) · <a href="http://www.wikidata.org/entity/Q67173261" target="_new">![Q67173261](img/wikidata.svg){.logo-inline}</a></small>'
 date: 11 November 2026
 institute: '<small>MediaWiki Users & Developers Conference. November 2026 | Ljubljana</small><span class="logo-row"><img src="img/kma_full.svg" height="60"/><img src="img/gwzo_logo.svg" height="60"/></span>'
 header-includes: |
-  <!-- Open Sans lokal vendored (build/fonts/), kein Google-Fonts-Request – Deck laeuft voll offline -->
+  <!-- Open Sans lokal vendored (build/fonts/), kein Google-Fonts-Request – Deck läuft voll offline -->
   <link rel="stylesheet" href="../build/fonts/fonts.css">
 ---
 
@@ -28,7 +28,7 @@ header-includes: |
 </div>
 </div>
 
-## Bringing historical epidemic diseases in structured shape {.slide-compact .slide-code-img}
+## Bringing historical epidemic diseases into structured shape {.slide-compact .slide-code-img}
 
 <div class="columns">
 <div class="column">
@@ -64,14 +64,14 @@ header-includes: |
 <div class="swatches ">
 <div class="swatch swatch-blue small"><strong>Overview-Pages (Places, Keywords)</strong>
 
-* Every page had its own `{{Template}}`, containg the data templates (hand curated!)
-* Content has not to be stored redundant
-* But many, many templates has to be touched. 
+* Every page had its own `{{Template}}`, containing the data templates (hand curated!)
+* Content does not have to be stored redundantly
+* But many, many templates have to be touched. 
 * Nice for collecting and displaying data - but not queryable.
 
 </div>
 <div class="swatch small">
-<strong>Krems (City in Austria)</strong>
+<strong>Krems (city in Austria)</strong>
 ```
 {{Template:Top Cat Nav}}
 {{First}} It is a large city in [[Austria]].
@@ -101,7 +101,7 @@ header-includes: |
 
 ## Let's semantify this Wiki! {data-background="#c00000" class="kma-chapter"}
 
-* Semantic Media Wiki? 
+* Semantic MediaWiki? 
 * Wikibase? 
 * ➡️ What fits best?
 
@@ -119,7 +119,7 @@ header-includes: |
 
 **Cons**
 
-* Thinking about SPARQLing in federated way 🤩
+* Thinking about SPARQLing in a federated way 🤩
 :::
 
 ::: {.kma-card}
@@ -128,7 +128,7 @@ header-includes: |
 **Pro**
 
 * No large text fragments
-* Thinking about SPARQLing in federated way 🤩
+* Thinking about SPARQLing in a federated way 🤩
 
 **Cons**
 
@@ -136,7 +136,7 @@ header-includes: |
 :::
 ::::
 
-## How did we decided?  {data-background="#0070c0" class="kma-chapter"}
+## How did we decide?  {data-background="#0070c0" class="kma-chapter"}
 
 <p class="fragment">Let's do both!</p>
 
@@ -148,8 +148,8 @@ header-includes: |
 <div class="swatch swatch-red "><strong>Analyze Existing Data</strong>
 
 * Get a full dump
-* Separate Disease data from Entity-Pages
-* Analyse Categories for missing Entity-Pages and attributive values
+* Separate disease data from Entity-Pages
+* Analyze Categories for missing Entity-Pages and attributive values
 
 </div>
 <div class="swatch swatch-blue "><strong>Prepare and Refine</strong>
@@ -160,9 +160,9 @@ header-includes: |
 * Fetch `coordinates` for place names
 
 </div>
-<div class="swatch swatch-text "><strong>Writing the new Wiki</strong>
+<div class="swatch swatch-text "><strong>Write the New Wiki</strong>
 
-* Writing the data using `MWAPI` and a `python`-scriptset.
+* Writing the data using `MWAPI` and a `Python` script set.
 * Uploading to FactGrid (dedicated Wikibase for historians)
 * Building Entity-Pages with `ASK`-queries
 
@@ -231,15 +231,15 @@ header-includes: |
 
 </div>
 
-## Additional ingest and linking to Wikibase {.slide-compact}
+## Additional data ingestion and linking to Wikibase {.slide-compact}
 
 :::: {.kma-grid}
 ::: {.kma-card}
 **FactGrid**
 
-* OpenRefine was already used for data prepartion
-* FactGrid provides much more string based properties 
-* Create Identifier to EpiMedDat (`FactGrid-Prop:P1470`)
+* OpenRefine was already used for data preparation
+* FactGrid provides many more string-based properties 
+* Create an identifier for EpiMedDat (`FactGrid-Prop:P1470`)
 :::
 ::: {.kma-card}
 **Wikidata**
@@ -251,7 +251,7 @@ header-includes: |
 ::: {.kma-card}
 **EpiMedDat**
 
-* `Property:FactGrid` set on all disease-pages and all entity pages
+* `Property:FactGrid` set on all disease pages and all entity pages
 * `Property:Wikidata ID` set on all conceptual entity pages
 
 :::
@@ -262,7 +262,7 @@ header-includes: |
 ![](img/EpidemicWave_FactGrid.mp4)
 
 
-##  Links
+## Links
 * [EpiMedDat.net](https://epimeddat.net)
 * [Old Data Dump](https://zenodo.org/records/18715840) ![](https://zenodo.org/badge/DOI/10.5281/zenodo.18715840.svg){.logo-inline}
 * [FactGrid (Wikibase) - List of all entries](https://database.factgrid.de/query/index.html#%23title%3AList%20of%20all%20EpiMedDat%20Disease-Entries%20in%20FactGrid%0ASELECT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3FepimMedDatId%20WHERE%20%7B%0A%3Fitem%20wdt%3AP1470%20%3FepimMedDatId%3B%20wdt%3AP2%20wd%3AQ9.%20%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%0A%7D)
