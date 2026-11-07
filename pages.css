@@ -1,6 +1,6 @@
 /* KMA-Design für die aus README.md gerenderte Pages-Startseite (index.html).
    Gleiche Design-Tokens wie !KMA_Template/custom.css.
-   Geladen via pandoc --css in .github/workflows/pages.yml, zusammen mit
+   Geladen als <link> im HTML-Wrapper in .github/workflows/pages.yml, zusammen mit
    build/fonts/fonts.css (Open Sans, lokal vendored -> offline, kein CDN). */
 
 :root {

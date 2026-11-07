@@ -70,6 +70,23 @@
   background: none;
 }
 
+/* ── Logos inline im Text (z. B. Karten-Titel: **SMW** ![](img/SMW_Logo.png){.logo-inline}) ── */
+/* reveal.css setzt section img auf display:block + margin:15px 0 – ohne diese
+   Klasse faellt das Bild auf eine eigene Zeile. Hier inline ohne Margin;
+   Hoehe in em skaliert mit der umgebenden Schrift (auch mit den 1.15em der
+   .kma-card-Titel). vertical-align schiebt das Logo optisch auf die Textlinie.
+   Spezifitaet (0,3,2) schlaegt reveal.css (0,2,2) und das Theme (0,1,1). */
+.reveal .slides section img.logo-inline {
+  display: inline-block;
+  height: 0.85em;
+  width: auto;
+  margin: 0 0.15em;
+  vertical-align: -0.1em;
+  border: none;
+  background: none;
+  box-shadow: none;
+}
+
 /* ── Kompakte Folien: kleinere Grundschrift, skaliert alles in em ── */
 .reveal section.slide-compact { font-size: 0.72em; }
 
@@ -89,6 +106,26 @@
   min-width: 0; /* verhindert Überlauf langer Inhalte */
 }
 
+/* ── Bild-Reihen: Bilder untereinander statt nebeneinander ── */
+/* Sinnvoll bei querformatigen Grafiken: in .columns wuerden sie in der
+   halben Spalte zu klein. Hier zentriert untereinander; das img-Margin
+   (reveal: 15px 0) wird platt gemacht, Abstand kommt aus gap.
+   Bildhoehe im Markdown pro Bild via {height="...px"} (Seitenverhaeltnis
+   bleibt via width:auto erhalten). */
+.reveal .img-rows {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  padding: 0 0.8em;
+}
+.reveal .slides section .img-rows img {
+  display: block;
+  margin: 0 auto 0.6em; /* pro Bild zentriert (margin auto), Reihen-Abstand */
+}
+.reveal .slides section .img-rows img:last-child { margin-bottom: 0; }
+
 /* ── AAA-Karten (drei Spalten) ── */
 .reveal .kma-grid {
   display: grid;
@@ -99,6 +136,13 @@
   max-width: 100%;
   padding: 0 0.8em;
   text-align: left;
+}
+/* Zweispaltiges Karten-Grid, wenn nur zwei Karten gebraucht werden –
+   sonst bleibt die dritte (leere) Spur stehen. Default bleibt 3-spaltig.
+   Im Hochformat stapelt auch .two-col einspaltig: die Regel
+   html.kma-portrait .reveal .kma-grid hat hoehere Spezifitaet. */
+.reveal .kma-grid.two-col {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 .reveal .kma-card {
   background: #fff;
@@ -151,6 +195,9 @@
 .reveal .kma-chapter h1, .reveal .kma-chapter h2 { color: #fff; }
 .reveal section.kma-chapter h1,
 .reveal section.kma-chapter h2 { border-bottom-color: #fff; }
+/* Listen auf Vollton-Folien: ▸ erbt die weiße Textfarbe
+   (sonst globales KMA-Rot – auf rot/blau unsichtbar) */
+.reveal .kma-chapter ul li::before { color: inherit; }
 
 /* ── Navigatorpfeile (Controls) halb so groß ── */
 /* reveal.js 6.x: .reveal .controls { font-size: clamp(10px, 2.5vmin, 40px) },
