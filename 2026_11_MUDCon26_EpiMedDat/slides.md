@@ -231,6 +231,37 @@ header-includes: |
 
 </div>
 
+## Additional ingest and linking to Wikibase {.slide-compact}
+
+:::: {.kma-grid}
+::: {.kma-card}
+**FactGrid**
+
+* OpenRefine was already used for data prepartion
+* FactGrid provides much more string based properties 
+* Create Identifier to EpiMedDat (`FactGrid-Prop:P1470`)
+:::
+::: {.kma-card}
+**Wikidata**
+
+* Additionally reconciled to Wikidata
+* Wikidata → FactGrid Migration tool 
+* Set `unknown value` with Wikidata-ID in FactGrid
+:::
+::: {.kma-card}
+**EpiMedDat**
+
+* `Property:FactGrid` set on all disease-pages and all entity pages
+* `Property:Wikidata ID` set on all conceptual entity pages
+
+:::
+::::
+
+## SPARQL-Power
+
+![](img/EpidemicWave_FactGrid.mp4)
+
+
 ##  Links
 * [EpiMedDat.net](https://epimeddat.net)
 * [Old Data Dump](https://zenodo.org/records/18715840) ![](https://zenodo.org/badge/DOI/10.5281/zenodo.18715840.svg){.logo-inline}

@@ -4,7 +4,7 @@ Präsentationen der [KM-A](https://km-a.net) gebaut mit reveal.js aus Markdown m
 
 ## Präsentationen
 
-* [`!KMA_Template/`](!KMA_Template/) ist die zentrale Vorlage für alle
+* [`!KMA_Template/`](https://knowledge-wiki.github.io/slides/!KMA_Template/) ist die zentrale Vorlage für alle
 KMA-Decks
 
 ### 2026
