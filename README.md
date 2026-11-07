@@ -8,7 +8,7 @@ Präsentationen der [KM-A](https://km-a.net) gebaut mit reveal.js aus Markdown m
 KMA-Decks
 
 ### 2026
-* [MUDCon26 - EpiMedDat](2026_11_MUDCon26_EpiMedDat/)
+* [MUDCon26 - EpiMedDat](https://knowledge-wiki.github.io/slides/2026_11_MUDCon26_EpiMedDat/)
 
 
 ## Aufbau des Repositorys
