@@ -1,14 +1,17 @@
 # KMA_RevealJS_Slides
 
-reveal.js-Präsentationen aus Markdown, gebaut mit pandoc.
+Präsentationen der [KM-A](https://km-a.net) gebaut mit reveal.js aus Markdown mit pandoc.
 
-**Ja – hier liegt ein KM-A-spezifisches reveal.js-Design:** das Verzeichnis
-[`!KMA_Template/`](!KMA_Template/) ist die zentrale Vorlage für alle
-KMA-Decks (Corporate Design rot `#c00000` / blau `#0070c0` auf weiß, Logo-SVG,
-Open Sans, fertige Komponenten wie Karten-Grids und Kapitel-Folien). Das
-`!` am Anfang sortiert das Template im Datei-Explorer nach oben.
+## Präsentationen
 
-## Aufbau
+* [`!KMA_Template/`](!KMA_Template/) ist die zentrale Vorlage für alle
+KMA-Decks
+
+### 2026
+* [MUDCon26 - EpiMedDat](2026_11_MUDCon26_EpiMedDat/)
+
+
+## Aufbau des Repositorys
 
 ```
 KMA_RevealJS_Slides/
