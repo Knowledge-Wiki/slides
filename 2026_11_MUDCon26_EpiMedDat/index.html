@@ -98,7 +98,7 @@
   </style>
   <link rel="stylesheet" href="../build/reveal.js-6.0.2/dist/theme/white.css" id="theme">
   <link rel="stylesheet" href="custom.css"/>
-  <!-- Open Sans lokal vendored (build/fonts/), kein Google-Fonts-Request – Deck laeuft voll offline -->
+  <!-- Open Sans lokal vendored (build/fonts/), kein Google-Fonts-Request – Deck läuft voll offline -->
   <p><link rel="stylesheet" href="../build/fonts/fonts.css"></p>
 </head>
 <body>
@@ -107,7 +107,7 @@
 
 <section id="title-slide">
   <h1 class="title">EpiMedDat</h1>
-  <p class="subtitle">From Plain WikiText to Semantic MediaWiki and
+  <p class="subtitle">From Plain Wikitext to Semantic MediaWiki and
 Wikibase</p>
   <p class="author"><small>Christian Erlinger (KMA) ·
 <a href="http://www.wikidata.org/entity/Q67173261" target="_new"><img
@@ -140,10 +140,11 @@ the Middle Ages</li>
 </div>
 </div>
 </section>
-<section id="bringing-historical-epidemic-diseases-in-structured-shape"
+<section
+id="bringing-historical-epidemic-diseases-into-structured-shape"
 class="slide level2 slide-compact slide-code-img">
 <h2 class="slide-compact slide-code-img">Bringing historical epidemic
-diseases in structured shape</h2>
+diseases into structured shape</h2>
 <div class="columns">
 <div class="column">
 <pre><code>{{Tab5C
@@ -173,15 +174,15 @@ diseases in structured shape</h2>
 <p><strong>Overview-Pages (Places, Keywords)</strong></p>
 <ul>
 <li class="fragment">Every page had its own <code>{{Template}}</code>,
-containg the data templates (hand curated!)</li>
-<li class="fragment">Content has not to be stored redundant</li>
-<li class="fragment">But many, many templates has to be touched.</li>
+containing the data templates (hand curated!)</li>
+<li class="fragment">Content does not have to be stored redundantly</li>
+<li class="fragment">But many, many templates have to be touched.</li>
 <li class="fragment">Nice for collecting and displaying data - but not
 queryable.</li>
 </ul>
 </div>
 <div class="swatch small">
-<p><strong>Krems (City in Austria)</strong></p>
+<p><strong>Krems (city in Austria)</strong></p>
 <pre><code>{{Template:Top Cat Nav}}
 {{First}} It is a large city in [[Austria]].
 
@@ -210,7 +211,7 @@ data-background="#c00000">
 <h2 class="kma-chapter" data-background="#c00000">Let’s semantify this
 Wiki!</h2>
 <ul>
-<li class="fragment">Semantic Media Wiki?</li>
+<li class="fragment">Semantic MediaWiki?</li>
 <li class="fragment">Wikibase?</li>
 <li class="fragment">➡️ What fits best?</li>
 </ul>
@@ -230,7 +231,7 @@ class="logo-inline" /></p>
 </ul>
 <p><strong>Cons</strong></p>
 <ul>
-<li class="fragment">Thinking about SPARQLing in federated way 🤩</li>
+<li class="fragment">Thinking about SPARQLing in a federated way 🤩</li>
 </ul>
 </div>
 <div class="kma-card">
@@ -239,7 +240,7 @@ class="logo-inline" /></p>
 <p><strong>Pro</strong></p>
 <ul>
 <li class="fragment">No large text fragments</li>
-<li class="fragment">Thinking about SPARQLing in federated way 🤩</li>
+<li class="fragment">Thinking about SPARQLing in a federated way 🤩</li>
 </ul>
 <p><strong>Cons</strong></p>
 <ul>
@@ -249,10 +250,10 @@ class="logo-inline" /></p>
 </div>
 </div>
 </section>
-<section id="how-did-we-decided" class="slide level2 kma-chapter"
+<section id="how-did-we-decide" class="slide level2 kma-chapter"
 data-background="#0070c0">
 <h2 class="kma-chapter" data-background="#0070c0">How did we
-decided?</h2>
+decide?</h2>
 <p class="fragment">
 Let’s do both!
 </p>
@@ -267,8 +268,8 @@ class="fragment fade-up" height="150" /></p>
 <p><strong>Analyze Existing Data</strong></p>
 <ul>
 <li class="fragment">Get a full dump</li>
-<li class="fragment">Separate Disease data from Entity-Pages</li>
-<li class="fragment">Analyse Categories for missing Entity-Pages and
+<li class="fragment">Separate disease data from Entity-Pages</li>
+<li class="fragment">Analyze Categories for missing Entity-Pages and
 attributive values</li>
 </ul>
 </div>
@@ -282,10 +283,10 @@ attributive values</li>
 </ul>
 </div>
 <div class="swatch swatch-text">
-<p><strong>Writing the new Wiki</strong></p>
+<p><strong>Write the New Wiki</strong></p>
 <ul>
 <li class="fragment">Writing the data using <code>MWAPI</code> and a
-<code>python</code>-scriptset.</li>
+<code>Python</code> script set.</li>
 <li class="fragment">Uploading to FactGrid (dedicated Wikibase for
 historians)</li>
 <li class="fragment">Building Entity-Pages with
@@ -353,18 +354,19 @@ data-src="img/SMW_Logo.png" class="logo-inline" /></p>
 data-src="img/1349_Austria.png" height="270" /></p>
 </div>
 </section>
-<section id="additional-ingest-and-linking-to-wikibase"
+<section id="additional-data-ingestion-and-linking-to-wikibase"
 class="slide level2 slide-compact">
-<h2 class="slide-compact">Additional ingest and linking to Wikibase</h2>
+<h2 class="slide-compact">Additional data ingestion and linking to
+Wikibase</h2>
 <div class="kma-grid">
 <div class="kma-card">
 <p><strong>FactGrid</strong></p>
 <ul>
 <li class="fragment">OpenRefine was already used for data
-prepartion</li>
-<li class="fragment">FactGrid provides much more string based
+preparation</li>
+<li class="fragment">FactGrid provides many more string-based
 properties</li>
-<li class="fragment">Create Identifier to EpiMedDat
+<li class="fragment">Create an identifier for EpiMedDat
 (<code>FactGrid-Prop:P1470</code>)</li>
 </ul>
 </div>
@@ -380,8 +382,8 @@ FactGrid</li>
 <div class="kma-card">
 <p><strong>EpiMedDat</strong></p>
 <ul>
-<li class="fragment"><code>Property:FactGrid</code> set on all
-disease-pages and all entity pages</li>
+<li class="fragment"><code>Property:FactGrid</code> set on all disease
+pages and all entity pages</li>
 <li class="fragment"><code>Property:Wikidata ID</code> set on all
 conceptual entity pages</li>
 </ul>
